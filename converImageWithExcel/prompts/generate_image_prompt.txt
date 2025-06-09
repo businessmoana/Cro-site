@@ -1,0 +1,89 @@
+ FINAL IMAGE GENERATION PROMPT
+(Text Replacement + Design Preservation + Model Matching)
+
+🔹 INPUTS
+You will always provide:
+
+A product image — featuring:
+
+A person (the model) wearing the product
+
+A specific product type (e.g. t-shirt, hoodie, etc.)
+
+A printed design on the product — including icons, graphics, and text
+
+A translated version of the text — this will be inserted as [TEXT]
+
+🎯 OBJECTIVE
+Generate a new, realistic image that:
+
+Preserves the original printed design pattern
+
+Keep the same icon(s), artwork, logo placement, and general layout
+
+Only replace the original text with [TEXT] (translated text)
+
+Maintain the same position, size, and alignment of text and icons on the product
+
+Matches the model from the original image
+
+Match the age, gender, and number of people
+
+Match general look (e.g. an old man with grey hair → old man in new image)
+
+Pose, clothing style, expression, and accessories may vary
+
+Allows creativity in environment and mood
+
+You can change the background, pose, expression, lighting, and accessories
+
+Make it feel modern, authentic, and suitable for an online store
+
+📌 CLARIFICATIONS
+✅ Preserve:
+Product type (e.g. hoodie, t-shirt)
+
+Printed design pattern (icon, graphic layout, icon position)
+
+Model’s age, gender, and number
+
+🔄 Replace:
+Text on product with [TEXT] (translated text)
+
+🎨 Can vary:
+Pose, expression, hairstyle
+
+Accessories (e.g. sunglasses, watch, jewelry — max 2)
+
+Environment (indoor or outdoor, seasonally inspired)
+
+Lighting (must be natural)
+
+Background (blurred if needed)
+
+📐 IMAGE FORMAT
+Portrait orientation (2:3 ratio)
+
+Realistic photo style (not cartoonish or overly artificial)
+
+Ideal for modern e-commerce use
+
+✅ QUICK EXAMPLES
+👕 If the original shows a t-shirt with a red heart icon and text below, the new image must:
+
+Keep the red heart icon in same place
+
+Replace the text only with [TEXT]
+
+Keep the t-shirt type
+
+Match the model’s age/gender/number
+
+🧓 If the original shows an old man in a hoodie with a skull icon and “BAD BOY”, the new image must:
+
+Show an old man
+
+Keep the skull icon
+
+Replace “BAD BOY” with [TEXT]
+
