@@ -71,6 +71,7 @@ async function processImages() {
         const queue = imageData.map(data => ({
             imagePath: path.join(imagesDir, data.imageName),
             imageName: data.imageName,
+            originalText: data.detectedText,
             translatedText: data.translatedText,
             excelPath,
             convertedDir

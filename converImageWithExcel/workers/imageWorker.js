@@ -63,14 +63,15 @@ async function translateImageName(imageName) {
     }
 }
 
-async function generateImage(translatedText, originalImagePath) {
+async function generateImage(originalText,translatedText, originalImagePath) {
     try {
         // Read the original image
         const image = await toFile(fs.createReadStream(originalImagePath), null, {
             type: "image/png",
         })
         const promptContent = loadPrompt('generate_image_prompt');
-        const prompt = promptContent.replace('[TEXT]', translatedText);;
+        let prompt = promptContent.replace('[original]', originalText);
+        prompt = promptContent.replace('[translated]', translatedText);
         const response = await openai.images.edit({
             model: "gpt-image-1",
             image: image,
@@ -104,11 +105,11 @@ function ensurePngExtension(filename) {
 parentPort.on('message', async (data) => {
     console.log("here worker")
     try {
-        const { imagePath, imageName, translatedText, excelPath, convertedDir } = data;
+        const { imagePath, imageName, originalText, translatedText, excelPath, convertedDir } = data;
         
         // Generate new image using the translated text
         let translatedImageName = await translateImageName(imageName); 
-        const buffer = await generateImage(translatedText, imagePath);
+        const buffer = await generateImage(originalText,translatedText, imagePath);
         
         // Create translated image name
         

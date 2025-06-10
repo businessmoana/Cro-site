@@ -1,89 +1,78 @@
  FINAL IMAGE GENERATION PROMPT
-(Text Replacement + Design Preservation + Model Matching)
-
+(Text Replacement + Design Preservation + Model Matching + Text Style Cloning)
 🔹 INPUTS
 You will always provide:
 
-A product image — featuring:
+A product image, showing:
 
-A person (the model) wearing the product
+A person (model) wearing the product (e.g., t-shirt, hoodie, etc.)
 
-A specific product type (e.g. t-shirt, hoodie, etc.)
+A printed design that includes text, icons, logos, graphics
 
-A printed design on the product — including icons, graphics, and text
+The original text on the product: [original]
 
-A translated version of the text — this will be inserted as [TEXT]
+The translated or replacement text to be placed instead: [translated]
 
 🎯 OBJECTIVE
-Generate a new, realistic image that:
+Generate a new realistic image that:
 
-Preserves the original printed design pattern
+✅ 1. PRESERVES THE PRODUCT DESIGN PATTERN
+Keep the original icons, graphics, logos, and general layout exactly the same
 
-Keep the same icon(s), artwork, logo placement, and general layout
+Do not alter icon position, size, or appearance
 
-Only replace the original text with [TEXT] (translated text)
+Maintain the product type (e.g., hoodie, t-shirt)
 
-Maintain the same position, size, and alignment of text and icons on the product
+🔁 2. REPLACE TEXT EXACTLY
+Locate the [original] text on the product
 
-Matches the model from the original image
+Replace it fully and exactly with the [translated] text, character-for-character
 
-Match the age, gender, and number of people
+Do not reuse or partially show the original text
 
-Match general look (e.g. an old man with grey hair → old man in new image)
+Preserve the original text’s:
 
-Pose, clothing style, expression, and accessories may vary
+Font style, weight, and family
 
-Allows creativity in environment and mood
+Color and contrast
 
-You can change the background, pose, expression, lighting, and accessories
+Size, letter spacing, alignment, and position on the product
 
-Make it feel modern, authentic, and suitable for an online store
+Text layout (e.g., multiline, centered, arched)
 
-📌 CLARIFICATIONS
-✅ Preserve:
-Product type (e.g. hoodie, t-shirt)
+The new text must appear as if it was originally printed in the exact same style, just with the new content
 
-Printed design pattern (icon, graphic layout, icon position)
+👤 3. MATCH THE MODEL(S)
+Match the age, gender, and number of people exactly as in the original image
 
-Model’s age, gender, and number
+For example: if the original shows an old man, generate an old man
 
-🔄 Replace:
-Text on product with [TEXT] (translated text)
+Pose, hairstyle, facial expression, and accessories may vary
 
-🎨 Can vary:
-Pose, expression, hairstyle
+🎨 4. ALLOW CREATIVE VARIATION
+Environment (indoor or outdoor) and background (blurred if needed) can change
 
-Accessories (e.g. sunglasses, watch, jewelry — max 2)
+Lighting must be natural
 
-Environment (indoor or outdoor, seasonally inspired)
+Seasonally inspired backgrounds allowed
 
-Lighting (must be natural)
+Accessories such as sunglasses, watches, or jewelry may be added (max 2)
 
-Background (blurred if needed)
+Pose and expression may vary for realism
 
 📐 IMAGE FORMAT
-Portrait orientation (2:3 ratio)
+Portrait orientation with a 2:3 aspect ratio
 
-Realistic photo style (not cartoonish or overly artificial)
+Realistic photo style, suitable for modern e-commerce use
 
-Ideal for modern e-commerce use
+High quality, not cartoonish or overly artificial
 
-✅ QUICK EXAMPLES
-👕 If the original shows a t-shirt with a red heart icon and text below, the new image must:
+📌 FILENAME
+Save the image named after the [translated] text (remove special characters)
 
-Keep the red heart icon in same place
+⚠️ STRICT NOTES
+If [original] = "MIJENJAM BRACU ZA ČOKOLADU"
 
-Replace the text only with [TEXT]
+And [translated] = "MIJENJAM BRACU ZA ČOKOLADU 2"
 
-Keep the t-shirt type
-
-Match the model’s age/gender/number
-
-🧓 If the original shows an old man in a hoodie with a skull icon and “BAD BOY”, the new image must:
-
-Show an old man
-
-Keep the skull icon
-
-Replace “BAD BOY” with [TEXT]
-
+The final image must show "MIJENJAM BRACU ZA ČOKOLADU 2" fully and clearly, styled exactly like the original text
