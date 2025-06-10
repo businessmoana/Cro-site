@@ -24,11 +24,11 @@ function loadPrompt(promptName) {
 
 async function translateImageName(imageName) {
     try {
-        const prompt = `You are an expert translator tasked with translating file names from Slovenian to SLOVAKIAN.
+        const prompt = `You are an expert translator tasked with translating file names from Slovenian to Croatian.
 
         Instructions:
 
-        Translate only words from Slovenian to SLOVAKIAN.
+        Translate only words from Slovenian to Croatian.
 
         Preserve the original filename structure including:
 
@@ -113,7 +113,7 @@ parentPort.on('message', async (data) => {
         // Create translated image name
         
         // Create translated image name
-        translatedImageName = ensurePngExtension(translatedText);
+        translatedImageName = ensurePngExtension(translatedImageName);
         
         // Save the generated image
         const outputPath = path.join(convertedDir, path.basename(translatedImageName));
