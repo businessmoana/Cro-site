@@ -4,6 +4,8 @@ const { toFile } = require('openai')
 const fs = require('fs');
 const path = require('path');
 const xlsx = require('xlsx');
+const sharp = require('sharp');
+
 // Initialize OpenAI
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
@@ -63,7 +65,7 @@ async function translateImageName(imageName) {
     }
 }
 
-async function generateImage(originalText,translatedText, originalImagePath) {
+async function generateImage(originalText, translatedText, originalImagePath) {
     try {
         // Read the original image
         const image = await toFile(fs.createReadStream(originalImagePath), null, {
@@ -76,11 +78,19 @@ async function generateImage(originalText,translatedText, originalImagePath) {
             model: "gpt-image-1",
             image: image,
             prompt: prompt,
+            size: "1024x1024",
+            n:1
         });
         const image_base64 = response.data[0].b64_json;
         console.log("response=>", response);
         const image_bytes = Buffer.from(image_base64, "base64");
-        return image_bytes;
+        const resizedImage = await sharp(image_bytes)
+            .resize(700, 500, {
+                fit: 'inside',
+                withoutEnlargement: true
+            })
+            .toBuffer();
+        return resizedImage;
     } catch (error) {
         console.error('Image generation error:', error);
         throw error;
@@ -106,16 +116,16 @@ parentPort.on('message', async (data) => {
     console.log("here worker")
     try {
         const { imagePath, imageName, originalText, translatedText, excelPath, convertedDir } = data;
-        
+
         // Generate new image using the translated text
-        let translatedImageName = await translateImageName(imageName); 
-        const buffer = await generateImage(originalText,translatedText, imagePath);
-        
+        let translatedImageName = await translateImageName(imageName);
+        const buffer = await generateImage(originalText, translatedText, imagePath);
+
         // Create translated image name
-        
+
         // Create translated image name
         translatedImageName = ensurePngExtension(translatedImageName);
-        
+
         // Save the generated image
         const outputPath = path.join(convertedDir, path.basename(translatedImageName));
         fs.writeFileSync(outputPath, buffer);
@@ -124,7 +134,7 @@ parentPort.on('message', async (data) => {
         const workbook = xlsx.readFile(excelPath);
         let worksheet = workbook.Sheets['Results'];
         const existingData = xlsx.utils.sheet_to_json(worksheet, { header: 1 });
-        
+
         // Find the row with matching image name and update it
         const rowIndex = existingData.findIndex(row => row[0] == imageName);
         if (rowIndex !== -1) {
@@ -134,7 +144,7 @@ parentPort.on('message', async (data) => {
         // Create a new workbook for the results
         const resultWorkbook = xlsx.utils.book_new();
         const resultWorksheet = xlsx.utils.aoa_to_sheet(existingData);
-        
+
         // Add headers if they don't exist
         if (!existingData[0] || existingData[0].length < 4) {
             const headers = ['Image Name', 'Detected Text', 'Translated Text', 'Converted Image Name'];
