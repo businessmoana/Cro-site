@@ -78,14 +78,14 @@ async function generateImage(originalText, translatedText, originalImagePath) {
             model: "gpt-image-1",
             image: image,
             prompt: prompt,
-            size: "1024x1024",
+            size: "1024x1536",
             n:1
         });
         const image_base64 = response.data[0].b64_json;
         console.log("response=>", response);
         const image_bytes = Buffer.from(image_base64, "base64");
         const resizedImage = await sharp(image_bytes)
-            .resize(700, 500, {
+            .resize(512, 768, {
                 fit: 'inside',
                 withoutEnlargement: true
             })
